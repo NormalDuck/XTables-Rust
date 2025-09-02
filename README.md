@@ -1,5 +1,7 @@
 # XTables RUST
 [![CI](https://github.com/NormalDuck/XTables-Rust/actions/workflows/ci.yml/badge.svg)](https://github.com/NormalDuck/XTables-Rust/actions/workflows/ci.yml) [![Release](https://github.com/NormalDuck/XTables-Rust/actions/workflows/release.yml/badge.svg)](https://github.com/NormalDuck/XTables-Rust/actions/workflows/release.yml)
+
+
 Make sure you have installed rust and use a rust ide
 To start the project, change directory to xtables. Then run 
 ```rs
