@@ -3,7 +3,6 @@ pub mod utils {
     pub mod ring_buffer;
 }
 
-pub mod xtables_client;
 pub mod xtables_server;
 
 pub mod xtables {

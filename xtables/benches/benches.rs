@@ -1,7 +1,7 @@
 use std::hint::black_box;
 
 use criterion::{Criterion, criterion_group, criterion_main};
-use xtables::utils::ring_buffer::RingBuffer;
+use xtables_server::utils::ring_buffer::RingBuffer;
 
 fn bench_format(c: &mut Criterion) {
     let mut counter = 0u64;
