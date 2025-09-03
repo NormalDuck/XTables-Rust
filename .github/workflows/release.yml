@@ -82,7 +82,7 @@ jobs:
       - name: Build xtables binary
         run: |
           cargo build \
-            --manifest-path xtables/xtables/Cargo.toml \
+            --manifest-path xtables/Cargo.toml \
             --locked --all-features \
             --release --target ${{ matrix.cargo-target }}
 
