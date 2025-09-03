@@ -1,0 +1,23 @@
+{
+  "name": "xtables",
+  "version": "0.0.1",
+  "description": "networking tables for team 488",
+  "homepage": "https://github.com/NormalDuck/XTables-Rust#readme",
+  "bugs": {
+    "url": "https://github.com/NormalDuck/XTables-Rust/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NormalDuck/XTables-Rust.git"
+  },
+  "license": "MIT",
+  "author": "Jun Jie Huang",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7"
+  }
+}

@@ -15,6 +15,9 @@ Note: .get method from xtables client uses req rep zmq method, I am unsure how t
 
 It is still unclear how this can replace the original java implementation of [Xtables](https://github.com/Kobeeeef/XTABLES), but rust is generally considered more memory safe & friendly and faster since it is a compiled programming language with no garbage collectors.
 
+## Tools
+Make sure you have nodejs, rust, python, java, protoc installed.
+
 ## Roadmap
 - [ ] Graceful shutdown
 - [ ] Unit Testing
