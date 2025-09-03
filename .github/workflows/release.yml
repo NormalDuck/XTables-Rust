@@ -23,7 +23,7 @@ jobs:
       - name: Get version from Cargo.toml
         id: get_version
         run: |
-          VERSION=$(cargo metadata --no-deps --format-version 1 --manifest-path xtables/xtables/Cargo.toml \
+          VERSION=$(cargo metadata --no-deps --format-version 1 --manifest-path xtables/Cargo.toml \
             | jq -r '.packages[0].version')
           echo "value=$VERSION" >> $GITHUB_OUTPUT
 
