@@ -85,7 +85,7 @@ impl XTablesServer {
     }
 
     pub fn start(&self) {
-        if self.initialized.load(Ordering::SeqCst) == false {
+        if !self.initialized.load(Ordering::SeqCst) {
             println!("Initializing XTables server...");
             self.initialized.store(true, Ordering::SeqCst);
         } else if self.stop.load(Ordering::SeqCst) {
@@ -279,9 +279,7 @@ impl XTablesServer {
                             let data: supported_values::Kind = ring_buffer
                                 .peek()
                                 .unwrap_or(&supported_values::Kind::String(String::from("")))
-                                .clone()
-                                .try_into()
-                                .unwrap();
+                                .clone();
 
                             let message = Reply {
                                 payload: Some(reply::Payload::Send(DataReplyCommand {
@@ -304,5 +302,11 @@ impl XTablesServer {
     pub fn stop(&self) {
         self.stop.store(true, Ordering::SeqCst);
         println!("Stopping xtables server...");
+    }
+}
+
+impl Default for XTablesServer {
+    fn default() -> Self {
+        XTablesServer::new()
     }
 }
