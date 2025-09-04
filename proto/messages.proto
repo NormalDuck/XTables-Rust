@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package xtables;
+package protobuf;
 
 option optimize_for = SPEED;
 
