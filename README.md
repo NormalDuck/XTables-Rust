@@ -1,5 +1,5 @@
 # XTables RUST
-[![CI](https://github.com/NormalDuck/XTables-Rust/actions/workflows/ci-rust.yml/badge.svg)](https://github.com/NormalDuck/XTables-Rust/actions/workflows/ci-rust.yml)[![Release](https://github.com/NormalDuck/XTables-Rust/actions/workflows/release.yml/badge.svg)](https://github.com/NormalDuck/XTables-Rust/actions/workflows/release.yml)
+[![CI](https://github.com/NormalDuck/XTables-Rust/actions/workflows/ci-rust.yml/badge.svg)](https://github.com/NormalDuck/XTables-Rust/actions/workflows/ci-rust.yml) [![Release](https://github.com/NormalDuck/XTables-Rust/actions/workflows/release.yml/badge.svg)](https://github.com/NormalDuck/XTables-Rust/actions/workflows/release.yml)
 
 
 Make sure you have installed rust and use a rust ide
@@ -48,6 +48,5 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 - [x] Graceful shutdown
 - [ ] Unit Testing
 - [x] Custom Logging
-~~- [ ] Client Registry?~~
 - [x] Server Logger Interface
 - [ ] Further Benchmarking
