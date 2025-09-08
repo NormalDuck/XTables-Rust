@@ -1,9 +1,20 @@
+use clap::Parser;
 use log::info;
-use xtables_server::{utils::log::init_logger, xtables_server::XTablesServer};
+use xtables_server::{
+    utils::{
+        args::{CONFIG, XTablesArgs},
+        log::init_logger,
+    },
+    xtables_server::XTablesServer,
+};
 
 //simple usage of using xtables server and xtables client
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    CONFIG
+        .set(XTablesArgs::parse())
+        .expect("Failed to set configuration");
+
     init_logger();
 
     let xtables_server = XTablesServer::new();

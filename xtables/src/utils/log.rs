@@ -2,7 +2,7 @@ use log::{LevelFilter, Log, Metadata, Record};
 use once_cell::sync::Lazy;
 use std::sync::{Mutex, Once};
 
-use crate::utils::ring_buffer::RingBuffer;
+use crate::utils::{args::CONFIG, ring_buffer::RingBuffer};
 
 // Our custom logger
 pub struct XTablesLogger {
@@ -12,6 +12,9 @@ pub struct XTablesLogger {
 
 impl Log for XTablesLogger {
     fn enabled(&self, metadata: &Metadata) -> bool {
+        if !CONFIG.get().unwrap().log {
+            return false;
+        }
         // Enable all logs at or below max level
         metadata.level() <= log::max_level()
     }
