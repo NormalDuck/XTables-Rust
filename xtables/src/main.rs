@@ -1,11 +1,15 @@
-use xtables_server::xtables_server::XTablesServer;
+use log::info;
+use xtables_server::{utils::log::init_logger, xtables_server::XTablesServer};
 
 //simple usage of using xtables server and xtables client
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    init_logger();
+
     let xtables_server = XTablesServer::new();
     xtables_server.start();
-    println!("XTables server started and running...");
+
+    info!("XTables server started successfully.");
 
     // Prevent main from exiting
     loop {

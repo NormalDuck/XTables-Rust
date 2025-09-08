@@ -6,4 +6,4 @@ pub mod protobuf {
 
 mod ports;
 
-mod xtables_client;
+pub mod xtables_client;
