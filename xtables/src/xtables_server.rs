@@ -289,7 +289,7 @@ impl XTablesServer {
                             let data: supported_values::Kind = ring_buffer
                                 .peek()
                                 .unwrap_or(&supported_values::Kind::String(String::from(
-                                    "INTERNALS_NO_INITIAL_VALUE",
+                                    "XTABLES_INTERNAL_NO_DATA_AVAILABLE",
                                 )))
                                 .clone();
 

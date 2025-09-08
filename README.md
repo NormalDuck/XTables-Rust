@@ -44,6 +44,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 ```
 
+## Notices
+Please do not attempt to make anything related with XTABLES_INTERNAL, such as channel or strings starting with such prefix. If this prefix is used, it **may** conflict with internal xtables processing.
+
 ## Roadmap
 - [x] Graceful shutdown
 - [ ] Unit Testing

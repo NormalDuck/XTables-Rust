@@ -206,7 +206,11 @@ impl XTablesClient {
             .unwrap();
 
         let initial_value = self.get(channel);
-        callback(&initial_value);
+        if !(initial_value
+            == supported_values::Kind::String("XTABLES_INTERNAL_NO_DATA_AVAILABLE".to_string()))
+        {
+            callback(&initial_value);
+        }
 
         let mut listeners = self.data_listeners.lock().unwrap();
         let callback = Box::new(callback);
