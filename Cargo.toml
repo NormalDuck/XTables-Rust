@@ -1,5 +1,2 @@
 [workspace]
-members = [
-    "xtables",
-    "rust-client"
-]
+members = ["xtables", "rust-client"]
