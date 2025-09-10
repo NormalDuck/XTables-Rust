@@ -3,15 +3,14 @@ name = "xtables_client"
 version = "0.0.3"
 edition = "2024"
 description = "A Rust client for interacting with the xtables server over ZeroMQ."
-include = ["../proto"]
 
 [dependencies]
 zmq = "0.10.0"
 tokio = { version = "1.47.1", features = ["full"] }
+xtables_protobuf = "0.0.3"
 prost = "0.14.1"
 prost-types = "0.14.1"
 slotmap = "1.0.7"
 
 [build-dependencies]
-cc = "1.0"
 prost-build = "0.14.1"
