@@ -3,6 +3,7 @@ name = "xtables_protobuf"
 version = "0.0.3"
 edition = "2024"
 description = "A Rust library for managing xtables protobuf definitions."
+license = "MIT"
 
 [dependencies]
 prost = "0.14.1"
