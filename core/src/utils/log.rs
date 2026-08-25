@@ -1,6 +1,5 @@
 use log::{LevelFilter, Log, Metadata, Record};
-use once_cell::sync::Lazy;
-use std::sync::{Mutex, Once};
+use std::sync::{LazyLock, Mutex, Once};
 
 use crate::utils::{args::CONFIG, ring_buffer::RingBuffer};
 
@@ -68,7 +67,7 @@ impl XTablesLogger {
     }
 }
 
-pub static LOGGER: Lazy<XTablesLogger> = Lazy::new(|| XTablesLogger {
+pub static LOGGER: LazyLock<XTablesLogger> = LazyLock::new(|| XTablesLogger {
     logs: Mutex::new(RingBuffer::new(500)),
     unread_logs: Mutex::new(Vec::new()),
 });
