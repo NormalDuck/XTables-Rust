@@ -1,0 +1,13 @@
+[package]
+name = "xtables_ffi"
+version = "0.0.3"
+edition = "2024"
+description = "C ABI for xtables, consumed by the Java FFM client and other foreign callers."
+
+[lib]
+name = "xtables_ffi"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+xtables_client = { path = "../rust" }
+xtables_protobuf = { path = "../../proto", version = "0.0.3" }
