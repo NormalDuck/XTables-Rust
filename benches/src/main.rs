@@ -14,6 +14,7 @@ struct Cli {
 enum Subject {
     Udp,
     Xtables,
+    ZmqDirect,
 }
 
 #[derive(Subcommand)]
@@ -58,6 +59,8 @@ fn main() -> std::io::Result<()> {
         } => match subject {
             Subject::Udp => subjects::udp::publish(&addr, payload, rate, count),
             Subject::Xtables => subjects::xtables::publish(&host, payload, rate, count),
+            Subject::ZmqDirect => subjects::zmq_direct::publish(
+                subjects::zmq_direct::DEFAULT_ENDPOINT, payload, rate, count),
         },
         Command::Subscriber {
             subject,
@@ -68,6 +71,8 @@ fn main() -> std::io::Result<()> {
         } => match subject {
             Subject::Udp => subjects::udp::subscribe(&addr, payload, samples),
             Subject::Xtables => subjects::xtables::subscribe(&host, payload, samples),
+            Subject::ZmqDirect => subjects::zmq_direct::subscribe(
+                subjects::zmq_direct::DEFAULT_ENDPOINT, payload, samples),
         },
     }
 }
