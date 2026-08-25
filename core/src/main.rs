@@ -8,9 +8,7 @@ use xtables_server::{
     xtables_server::XTablesServer,
 };
 
-//simple usage of using xtables server and xtables client
-#[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
+fn main() {
     CONFIG
         .set(XTablesArgs::parse())
         .expect("Failed to set configuration");
@@ -22,10 +20,5 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     info!("XTables server started successfully.");
 
-    // Prevent main from exiting
-    loop {
-        // Here you can add logic to interact with the server or handle other tasks
-        // For demonstration, we will just sleep for a while
-        tokio::time::sleep(tokio::time::Duration::from_secs(5)).await;
-    }
+    std::thread::park();
 }
