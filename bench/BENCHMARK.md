@@ -23,8 +23,6 @@ and the Rust ones still run.
 | `nt4` | NetworkTables 4, tuned for latency — see `Nt4Subject` for the options |
 | `xtables-zmq` | the ZeroMQ path the put/get API still uses |
 | `udp-floor` | raw UDP, the floor nothing layered on a datagram can beat |
-| `zmq-direct` | one hop of ZeroMQ, no broker — separates ZeroMQ's cost from the relay's |
-| `java-udp` | a hand-written Java UDP client, for comparison against the native one |
 
 Default is `xtables-rust xtables nt4`.
 
@@ -43,7 +41,7 @@ Default is `xtables-rust xtables nt4`.
 | `PIN` | `0` to disable core pinning |
 | `ONLY_REPORT` | `1` to rebuild the tables from the last run |
 
-    SUBJECTS="xtables-rust zmq-direct udp-floor" RATE=1000 bench/generate.sh
+    SUBJECTS="xtables-rust xtables-zmq udp-floor" RATE=1000 bench/generate.sh
 
 Keep the rate below saturation. At 2000 Hz every subject queues and repeated
 runs vary by more than 2x, which measures the queue rather than the transport.

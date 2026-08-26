@@ -19,7 +19,6 @@ enum Subject {
     Udp,
     Xtables,
     XtablesUdp,
-    ZmqDirect,
     GetLatency,
 }
 
@@ -67,12 +66,6 @@ fn main() -> std::io::Result<()> {
             Subject::Xtables => subjects::xtables::publish(&host, payload, rate, count),
             Subject::XtablesUdp => subjects::xtables_udp::publish(&host, payload, rate, count),
             Subject::GetLatency => subjects::get_latency::run(&host, samples_or(count)),
-            Subject::ZmqDirect => subjects::zmq_direct::publish(
-                subjects::zmq_direct::DEFAULT_ENDPOINT,
-                payload,
-                rate,
-                count,
-            ),
         },
         Command::Subscriber {
             subject,
@@ -85,11 +78,6 @@ fn main() -> std::io::Result<()> {
             Subject::Xtables => subjects::xtables::subscribe(&host, payload, samples),
             Subject::XtablesUdp => subjects::xtables_udp::subscribe(&host, payload, samples),
             Subject::GetLatency => subjects::get_latency::run(&host, samples),
-            Subject::ZmqDirect => subjects::zmq_direct::subscribe(
-                subjects::zmq_direct::DEFAULT_ENDPOINT,
-                payload,
-                samples,
-            ),
         },
     }
 }
