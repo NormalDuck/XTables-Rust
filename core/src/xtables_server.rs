@@ -15,8 +15,8 @@ use xtables_protobuf::telemetry;
 use log::info;
 use prost::Message;
 use xtables_protobuf::protobuf::{
-    CompareAndSetCommand, Publish, Push, Reply, ReplyCompareAndSetCommand, ReplyDataCommand,
-    ReplyDeleteCommand, ReplyJsonCommand, ReplyLogsCommand, ReplyPingCommand,
+    BezierCurve, CompareAndSetCommand, Publish, Push, Reply, ReplyCompareAndSetCommand,
+    ReplyDataCommand, ReplyDeleteCommand, ReplyJsonCommand, ReplyLogsCommand, ReplyPingCommand,
     ReplyStatisticsCommand, ReplyTablesCommand, ReplyTelemetryCommand, Request, SendDataCommand,
     SupportedValues, publish, push, reply, request, supported_values,
 };
@@ -195,7 +195,30 @@ impl XTablesServer {
                     out.push('}');
                 });
             }
+            Kind::BezierCurve(curve) => Self::write_json_curve(out, curve),
+            Kind::BezierCurves(curves) => {
+                Self::write_json_array(out, &curves.curves, Self::write_json_curve)
+            }
+            Kind::BezierCurvesList(list) => {
+                Self::write_json_array(out, &list.values, |out, curves| {
+                    Self::write_json_array(out, &curves.curves, Self::write_json_curve)
+                })
+            }
         }
+    }
+
+    fn write_json_curve(out: &mut String, curve: &BezierCurve) {
+        Self::write_json_array(out, &curve.control_points, |out, point| {
+            out.push_str("{\"x\":");
+            Self::write_json_number(out, point.x);
+            out.push_str(",\"y\":");
+            Self::write_json_number(out, point.y);
+            if let Some(degrees) = point.rotation_degrees {
+                out.push_str(",\"rotationDegrees\":");
+                Self::write_json_number(out, degrees);
+            }
+            out.push('}');
+        });
     }
 
     fn write_json_array<T>(out: &mut String, values: &[T], mut write: impl FnMut(&mut String, &T)) {
@@ -508,8 +531,9 @@ impl XTablesServer {
                                 payload: Some(reply::Payload::CompareAndSet(
                                     ReplyCompareAndSetCommand {
                                         swapped,
-                                        current: current
-                                            .map(|kind| SupportedValues { kind: Some(kind) }),
+                                        current: current.map(|kind| {
+                                            Box::new(SupportedValues { kind: Some(kind) })
+                                        }),
                                     },
                                 )),
                             }
@@ -703,8 +727,8 @@ mod tests {
         supported_values::Kind::String(value.to_string())
     }
 
-    fn wrap(kind: supported_values::Kind) -> Option<SupportedValues> {
-        Some(SupportedValues { kind: Some(kind) })
+    fn wrap(kind: supported_values::Kind) -> Option<Box<SupportedValues>> {
+        Some(Box::new(SupportedValues { kind: Some(kind) }))
     }
 
     #[test]
