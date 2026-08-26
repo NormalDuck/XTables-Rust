@@ -13,4 +13,4 @@ xtables_client = { path = "../rust" }
 xtables_protobuf = { path = "../../proto", version = "0.0.3" }
 
 [build-dependencies]
-cbindgen = "0.29"
+cbindgen = "0.29.4"

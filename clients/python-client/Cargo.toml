@@ -11,6 +11,6 @@ name = "xtables"
 crate-type = ["cdylib"]
 
 [dependencies]
-pyo3 = { version = "0.27", features = ["extension-module", "abi3-py39", "multiple-pymethods"] }
+pyo3 = { version = "0.29", features = ["extension-module", "abi3-py39", "multiple-pymethods"] }
 xtables_client = { path = "../rust" }
 xtables_protobuf = { path = "../../proto", version = "0.0.3" }
