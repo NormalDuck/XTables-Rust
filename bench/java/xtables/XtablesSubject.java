@@ -44,7 +44,7 @@ public final class XtablesSubject {
         while (recorder.size() < samples && System.currentTimeMillis() < deadline) {
             Thread.onSpinWait();
         }
-        recorder.report("xtables", size);
+        recorder.report("xtables " + Harness.version("BENCH_XTABLES_VERSION"), size);
         client.shutdown();
     }
 

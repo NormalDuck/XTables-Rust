@@ -20,11 +20,11 @@ and the Rust ones still run.
 |---|---|
 | `xtables-rust` | the UDP telemetry plane, the fastest supported path |
 | `xtables` | the original Java XTABLES v5.0.0, the incumbent |
-| `nt4` | NetworkTables 4, tuned for latency — see `Nt4Subject` for the options |
+| `ntcore` | NetworkTables 4, tuned for latency — see `NtcoreSubject` for the options |
 | `xtables-zmq` | the ZeroMQ path the put/get API still uses |
 | `udp-floor` | raw UDP, the floor nothing layered on a datagram can beat |
 
-Default is `xtables-rust xtables nt4`.
+Default is `xtables-rust xtables ntcore`.
 
 ## Options
 
