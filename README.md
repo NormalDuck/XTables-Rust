@@ -2,11 +2,11 @@
 [![CI](https://github.com/NormalDuck/XTables-Rust/actions/workflows/ci-rust.yml/badge.svg)](https://github.com/NormalDuck/XTables-Rust/actions/workflows/ci-rust.yml) [![Release](https://github.com/NormalDuck/XTables-Rust/actions/workflows/release.yml/badge.svg)](https://github.com/NormalDuck/XTables-Rust/actions/workflows/release.yml)
 
 
-Make sure you have installed rust and use a rust ide. To start the server, run
+Make sure you have installed Rust and use a Rust IDE. To start the server, run
 ```sh
 cargo run -p xtables_server
 ```
-This should give you an example of the public api of xtables server. 
+This should give you an example of the public api of XTABLES server. 
 
 This project uses protobufs to compress bandwith and zmq servers. 
 
