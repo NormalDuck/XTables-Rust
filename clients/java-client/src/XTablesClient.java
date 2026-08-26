@@ -1,4 +1,4 @@
-import static org.xtables.ffi.xtables_h.*;
+import static xtables.ffi.xtables_h.*;
 
 import java.lang.foreign.Arena;
 import java.lang.foreign.MemorySegment;
