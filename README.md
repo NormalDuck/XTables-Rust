@@ -1,5 +1,5 @@
 # XTables RUST
-[![CI](https://github.com/NormalDuck/XTables-Rust/actions/workflows/ci-rust.yml/badge.svg)](https://github.com/NormalDuck/XTables-Rust/actions/workflows/ci-rust.yml) [![Release](https://github.com/NormalDuck/XTables-Rust/actions/workflows/release.yml/badge.svg)](https://github.com/NormalDuck/XTables-Rust/actions/workflows/release.yml)
+[![CI](https://github.com/NormalDuck/XTables-Rust/actions/workflows/ci.yml/badge.svg)](https://github.com/NormalDuck/XTables-Rust/actions/workflows/ci.yml) [![Release](https://github.com/NormalDuck/XTables-Rust/actions/workflows/release.yml/badge.svg)](https://github.com/NormalDuck/XTables-Rust/actions/workflows/release.yml)
 
 
 Make sure you have installed Rust and use a Rust IDE. To start the server, run
