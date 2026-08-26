@@ -134,9 +134,6 @@ Please do not attempt to make anything related with XTABLES_INTERNAL, such as ch
 
 ## Credits
 
-This project is a Rust reimplementation of [XTABLES](https://github.com/Kobeeeef/XTABLES)
-by [Kobeeeef](https://github.com/Kobeeeef), which it owes its API, its wire
-semantics and its design to. The method names, the type set and the channel model
-are XTABLES'; the geometry and list encodings are byte-compatible with it on
-purpose. XTABLES ran real matches for real teams long before this existed, and
-every benchmark here measures against it because it is the thing worth matching.
+Credits to [XTABLES](https://github.com/Kobeeeef/XTABLES)
+by [Kobeeeef](https://github.com/Kobeeeef) for the 
+original project and implementation
