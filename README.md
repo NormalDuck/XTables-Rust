@@ -129,9 +129,18 @@ The 5555-5558 range was avoided because 5555 is adb's default port, so any
 coprocessor running adb would quietly take the PUB/SUB socket.
 
 ## Tools
-Make sure you have nodejs, rust, python and java installed. `protoc` is *not*
+Make sure you have rust, python and java installed. `protoc` is *not*
 required — the protobuf definitions are compiled by [`protox`](https://crates.io/crates/protox),
 a pure-Rust compiler, so a clean `cargo build` needs no external toolchain.
+
+Commit hooks run through [pre-commit](https://pre-commit.com):
+
+```sh
+pip install pre-commit && pre-commit install
+```
+
+They cover formatting, clippy, and whether the generated clients still match
+`clients/api.toml`. Tests, the Gradle build and the C++ compile stay in CI.
 
 ## Example
 
@@ -205,5 +214,5 @@ Please do not attempt to make anything related with XTABLES_INTERNAL, such as ch
 ## Credits
 
 Credits to [XTABLES](https://github.com/Kobeeeef/XTABLES)
-by [Kobeeeef](https://github.com/Kobeeeef) for the 
+by [Kobeeeef](https://github.com/Kobeeeef) for the
 original project and implementation
