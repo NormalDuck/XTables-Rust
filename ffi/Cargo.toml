@@ -10,8 +10,8 @@ crate-type = ["cdylib", "rlib"]
 
 [dependencies]
 prost = "0.14.4"
-xtables_client = { path = "../rust" }
-xtables_protobuf = { path = "../../proto", version = "0.0.3" }
+xtables_client = { path = "../clients/rust" }
+xtables_protobuf = { path = "../proto", version = "0.0.3" }
 
 [build-dependencies]
 cbindgen = "0.29.4"
