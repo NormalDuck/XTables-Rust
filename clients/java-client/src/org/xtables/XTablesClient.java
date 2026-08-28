@@ -1,4 +1,6 @@
-import static xtables.ffi.xtables_h.*;
+package org.xtables;
+
+import static org.xtables.ffi.xtables_h.*;
 
 import java.lang.foreign.Arena;
 import java.lang.foreign.MemorySegment;
@@ -32,7 +34,7 @@ import java.util.function.Consumer;
  * Closing it releases the native handle; any {@link Subscription} it handed out
  * stops working at that point.
  */
-public final class XTablesClient extends XTablesApi implements AutoCloseable {
+public final class XTablesClient extends BaseXTablesClient implements AutoCloseable {
     private final MemorySegment scratch;
     private final ConcurrentHashMap<Consumer<byte[]>, Poller> pollers = new ConcurrentHashMap<>();
     private ScheduledExecutorService pollExecutor;

@@ -1,6 +1,8 @@
 // Generated from clients/api.toml by codegen. Do not edit.
 
-import static xtables.ffi.xtables_h.*;
+package org.xtables;
+
+import static org.xtables.ffi.xtables_h.*;
 
 import java.lang.foreign.Arena;
 import java.lang.foreign.MemorySegment;
@@ -15,7 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * methods, so the three clients cannot drift apart when a type is added.
  * {@code XTablesClient} extends this and supplies the rest.
  */
-public abstract class XTablesApi {
+public abstract class BaseXTablesClient {
     /** Backs the client for its whole lifetime; holds the cached channel names. */
     protected Arena arena;
     /** The native client, from {@code xt_client_new}. */
@@ -24,7 +26,7 @@ public abstract class XTablesApi {
     private final ConcurrentHashMap<String, MemorySegment> channels = new ConcurrentHashMap<>();
 
     /** For subclasses only. */
-    protected XTablesApi() {}
+    protected BaseXTablesClient() {}
 
     /**
      * Turn a non-zero status from the native library into an exception.
