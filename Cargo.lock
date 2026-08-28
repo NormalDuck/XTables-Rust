@@ -1240,6 +1240,7 @@ dependencies = [
  "slotmap",
  "thiserror",
  "xtables_protobuf",
+ "xtables_server",
  "zmq",
 ]
 
