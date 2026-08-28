@@ -447,8 +447,9 @@ impl PyXTablesClient {
 
     /// Publish a value already encoded in XTABLES' own byte layout.
     ///
-    /// `xtables_type` is XTABLES' type tag. Returns `False`, publishing nothing, if
-    /// the tag is unknown or the bytes do not decode as that type.
+    /// `xtables_type` is XTABLES' type tag. An unrecognised tag is published as raw
+    /// bytes. Returns `False`, publishing nothing, only when a recognised tag comes
+    /// with bytes that are not a valid value of that type.
     fn put_typed_bytes(
         &self,
         python: Python<'_>,

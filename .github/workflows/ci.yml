@@ -182,10 +182,10 @@ jobs:
       - name: Build the extension module
         run: cargo build --release -p xtables_python
 
-      - name: Check the module imports
+      - name: Test the client
         run: |
           cp target/release/libxtables.so xtables.so
-          python3 -c "import xtables; xtables.XTablesClient(host='127.0.0.1')"
+          python3 -m unittest discover -s clients/python-client -v
 
   natives:
     name: Native library - ${{ matrix.name }}

@@ -837,8 +837,9 @@ pub unsafe extern "C" fn xt_get_bezier_curves_list(
 
 /// Publish a value already encoded in XTABLES' own byte layout.
 ///
-/// `xtables_type` is XTABLES' type tag. Returns [`XT_ERR_WRONG_TYPE`], publishing
-/// nothing, if the tag is unknown or the bytes do not decode as that type.
+/// `xtables_type` is XTABLES' type tag. An unrecognised tag is published as raw
+/// bytes. Returns [`XT_ERR_WRONG_TYPE`], publishing nothing, only when a
+/// recognised tag comes with bytes that are not a valid value of that type.
 ///
 /// # Safety
 ///

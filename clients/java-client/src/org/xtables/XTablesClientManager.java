@@ -18,11 +18,9 @@ import java.util.concurrent.CompletableFuture;
  */
 public final class XTablesClientManager {
     private final CompletableFuture<XTablesClient> future;
-    private volatile XTablesClient client;
 
     private XTablesClientManager(CompletableFuture<XTablesClient> future) {
         this.future = future;
-        future.thenAccept(created -> this.client = created);
     }
 
     /**
@@ -70,10 +68,15 @@ public final class XTablesClientManager {
     /**
      * The client if it is ready, without waiting.
      *
-     * @return the client, or null while it is still being built
+     * Read from the future rather than mirrored into a field, so it cannot lag
+     * behind a future that has already completed.
+     *
+     * @return the client, or null while it is still being built or if building failed
      */
     public XTablesClient getOrNull() {
-        return client;
+        return future.isDone() && !future.isCompletedExceptionally()
+            ? future.getNow(null)
+            : null;
     }
 
     /**
@@ -82,7 +85,7 @@ public final class XTablesClientManager {
      * @return true once it is ready
      */
     public boolean isReady() {
-        return client != null;
+        return getOrNull() != null;
     }
 
     /**
@@ -90,7 +93,7 @@ public final class XTablesClientManager {
      * so a client that finishes after this call is not closed by it.
      */
     public void shutdown() {
-        XTablesClient existing = client;
+        XTablesClient existing = getOrNull();
         if (existing != null) {
             existing.close();
         }

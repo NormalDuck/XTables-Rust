@@ -553,7 +553,9 @@ public final class XTablesClient extends BaseXTablesClient implements AutoClosea
      * @param channel the channel to publish to
      * @param xtablesType the XTABLES type tag
      * @param value the encoded value
-     * @return false, publishing nothing, if the tag is unknown or the bytes do not decode as that type
+     * @return false, publishing nothing, only when a recognised tag comes with bytes
+     *     that are not a valid value of that type; an unrecognised tag is published
+     *     as raw bytes
      */
     public boolean putTypedBytes(String channel, int xtablesType, byte[] value) {
         try (Arena call = Arena.ofConfined()) {
