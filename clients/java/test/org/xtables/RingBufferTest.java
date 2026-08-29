@@ -37,8 +37,8 @@ final class RingBufferTest {
         return new XTablesClient(LIBRARY, "127.0.0.1", 47941, 47942, 47943, 50, 500);
     }
 
-    private static void push(XTablesClient client, long id, MemorySegment payload) {
-        int code = xt_ring_push(client.handle, id, payload, payload.byteSize());
+    private static void push(XTablesClient client, int id, MemorySegment payload) {
+        int code = xt_ring_push(client.handle, id, payload, (int) payload.byteSize());
         if (code != XT_OK()) {
             throw new IllegalStateException("ring push failed: " + code);
         }
