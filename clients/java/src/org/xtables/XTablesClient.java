@@ -51,7 +51,7 @@ public final class XTablesClient extends BaseXTablesClient implements AutoClosea
      * @param host the machine running the server
      */
     public XTablesClient(Path library, String host) {
-        this(library, host, 48802, 48801, 48800, 500, 500);
+        this(library, host, 4882, 4881, 4880, 500, 500);
     }
 
     /**
