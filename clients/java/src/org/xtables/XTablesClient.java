@@ -111,7 +111,11 @@ public final class XTablesClient extends BaseXTablesClient implements AutoClosea
                 return;
             }
         }, pollMillis, pollMillis, TimeUnit.MILLISECONDS);
-        pollers.put(consumer, new Poller(subscription, task));
+        if (pollers.putIfAbsent(consumer, new Poller(subscription, task)) != null) {
+            task.cancel(false);
+            subscription.close();
+            return false;
+        }
         return true;
     }
 
@@ -899,7 +903,7 @@ public final class XTablesClient extends BaseXTablesClient implements AutoClosea
                 return;
             }
             released = true;
-check(xt_unsubscribe(handle, id), "unsubscribe");
+            check(xt_unsubscribe(handle, id), "unsubscribe");
         }
     }
 
