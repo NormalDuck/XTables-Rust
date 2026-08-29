@@ -196,7 +196,7 @@ Please do not attempt to make anything related with XTABLES_INTERNAL, such as ch
 
 ## Roadmap
 - [x] Graceful shutdown
-- [ ] Unit Testing
+- [x] Unit Testing
 - [x] Custom Logging
 - [x] Server Logger Interface
 - [x] Further Benchmarking
