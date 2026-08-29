@@ -1284,6 +1284,7 @@ dependencies = [
  "prost",
  "xtables_protobuf",
  "zmq",
+ "zmq-sys",
 ]
 
 [[package]]
