@@ -44,8 +44,6 @@ fn main() {
     info!("XTables server started successfully.");
     eprintln!("xtables: ready");
 
-    // park() is documented to wake spuriously, and main returning drops the
-    // server, which stops it. A stray wakeup would look like a clean exit.
     loop {
         std::thread::park();
     }
