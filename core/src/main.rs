@@ -15,7 +15,18 @@ fn main() {
 
     init_logger();
 
-    let xtables_server = match XTablesServer::try_new() {
+    let config = CONFIG.get().expect("configuration was just set");
+    eprintln!(
+        "xtables: PUB/SUB {}, REQ/REP {}, PUSH/PULL {}, telemetry UDP {}",
+        config.pub_port, config.rep_port, config.pull_port, config.telemetry_port
+    );
+
+    let xtables_server = match XTablesServer::try_with_ports_and_telemetry(
+        config.pub_port,
+        config.pull_port,
+        config.rep_port,
+        config.telemetry_port,
+    ) {
         Ok(server) => server,
         Err(error) => {
             let mut message = error.to_string();
@@ -31,6 +42,11 @@ fn main() {
     xtables_server.start();
 
     info!("XTables server started successfully.");
+    eprintln!("xtables: ready");
 
-    std::thread::park();
+    // park() is documented to wake spuriously, and main returning drops the
+    // server, which stops it. A stray wakeup would look like a clean exit.
+    loop {
+        std::thread::park();
+    }
 }
