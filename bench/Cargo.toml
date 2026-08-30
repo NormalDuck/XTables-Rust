@@ -13,5 +13,5 @@ zmq = "0.10.0"
 prost = "0.14.4"
 hdrhistogram = { version = "7.6", default-features = false }
 clap = { version = "4.6", features = ["derive"] }
-xtables_client = { path = "../clients/rust" }
+xtables_client = { path = "../client" }
 xtables_protobuf = { path = "../proto", version = "0.1.0" }
