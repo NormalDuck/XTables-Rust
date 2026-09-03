@@ -17,8 +17,8 @@ fn main() {
 
     let config = CONFIG.get().expect("configuration was just set");
     eprintln!(
-        "xtables: PUB/SUB {}, REQ/REP {}, PUSH/PULL {}, telemetry UDP {}",
-        config.pub_port, config.rep_port, config.pull_port, config.telemetry_port
+        "xtables: WS {}, telemetry UDP {}",
+        config.rep_port, config.telemetry_port
     );
 
     let xtables_server = match XTablesServer::try_with_ports_and_telemetry(

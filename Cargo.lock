@@ -1736,8 +1736,6 @@ dependencies = [
  "thiserror",
  "tungstenite",
  "xtables_protobuf",
- "zmq",
- "zmq-sys",
 ]
 
 [[package]]
