@@ -10,7 +10,8 @@
 use crate::harness::{HEADER_LEN, Pacer, Recorder, decode, encode};
 use std::time::Duration;
 use tungstenite::{ClientRequestBuilder, Message};
-use xtables_server::websocket::message::{ValueMessage, XtValue};
+use xtables_server::value::XtValue;
+use xtables_server::websocket::message::ValueMessage;
 
 /// The NT4 WebSocket subprotocol.
 const SUBPROTOCOL: &str = "v4.1.networktables.first.wpi.edu";

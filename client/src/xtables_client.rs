@@ -25,7 +25,8 @@ use xtables_protobuf::protobuf::{
 };
 use xtables_protobuf::telemetry;
 
-use xtables_server::websocket::message::{CtMessage, ValueMessage, XtValue};
+use xtables_server::value::XtValue;
+use xtables_server::websocket::message::{CtMessage, ValueMessage};
 use xtables_server::websocket::protocol::{encode_once, type_string};
 
 use crate::ports;
