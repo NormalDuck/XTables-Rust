@@ -95,9 +95,8 @@ dependencies = [
  "clap",
  "hdrhistogram",
  "prost",
- "xtables_client",
- "xtables_protobuf",
- "zmq",
+ "tungstenite",
+ "xtables_server",
 ]
 
 [[package]]

@@ -20,7 +20,6 @@ and the Rust ones still run.
 | `xtables-rust` | the UDP telemetry plane, the fastest supported path |
 | `xtables` | the original Java XTABLES v5.0.0, the incumbent |
 | `ntcore` | NetworkTables 4, tuned for latency — see `NtcoreSubject` for the options |
-| `xtables-zmq` | the ZeroMQ path the put/get API still uses |
 | `udp-floor` | raw UDP, the floor nothing layered on a datagram can beat |
 
 Default is `xtables-rust xtables ntcore`.
@@ -42,7 +41,7 @@ Default is `xtables-rust xtables ntcore`.
 | `PIN` | `0` to disable core pinning |
 | `ONLY_REPORT` | `1` to rebuild the tables from the last run |
 
-    SUBJECTS="xtables-rust xtables-zmq udp-floor" RATE=1000 bench/generate.sh
+    SUBJECTS="xtables-rust udp-floor" RATE=1000 bench/generate.sh
 
 A cold pass then reruns XTABLES with the warmup discard off, recording what a
 freshly started JVM delivers at boot. Only XTABLES gets one — ntcore is not
