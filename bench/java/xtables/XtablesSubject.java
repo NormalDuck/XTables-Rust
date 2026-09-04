@@ -40,7 +40,7 @@ public final class XtablesSubject {
 
         System.out.printf("subscribed to '%s' on %s, waiting for %d samples...%n",
             CHANNEL, host, samples);
-        long deadline = System.currentTimeMillis() + 120_000;
+        long deadline = System.currentTimeMillis() + Harness.deadlineMillis();
         while (recorder.size() < samples && System.currentTimeMillis() < deadline) {
             Thread.onSpinWait();
         }

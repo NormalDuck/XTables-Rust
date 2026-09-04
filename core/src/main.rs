@@ -17,7 +17,7 @@ fn main() {
 
     let config = CONFIG.get().expect("configuration was just set");
     eprintln!(
-        "xtables: WS {}, telemetry UDP {}",
+        "xtables: WebSocket {}, telemetry UDP {}",
         config.rep_port, config.telemetry_port
     );
 

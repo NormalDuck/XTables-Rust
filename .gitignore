@@ -9,5 +9,5 @@ bindings/natives
 .cache
 __pycache__
 .pytest_cache
-
+xtables.json
 bindings/generated/
