@@ -17,11 +17,12 @@ fn main() {
 
     let config = CONFIG.get().expect("configuration was just set");
     eprintln!(
-        "xtables: WebSocket {}, telemetry UDP {}",
-        config.rep_port, config.telemetry_port
+        "xtables: WebSocket {}:{}, telemetry UDP {}",
+        config.bind, config.rep_port, config.telemetry_port
     );
 
-    let xtables_server = match XTablesServer::try_with_ports_and_telemetry(
+    let xtables_server = match XTablesServer::try_with_bind(
+        &config.bind,
         config.pub_port,
         config.pull_port,
         config.rep_port,

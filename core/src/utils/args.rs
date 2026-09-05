@@ -24,6 +24,10 @@ pub struct XTablesArgs {
     #[arg(long, default_value_t = ports::DEFAULT_WEBSOCKET_PORT)]
     pub rep_port: u16,
 
+    /// Address the WebSocket plane listens on
+    #[arg(long, default_value_t = crate::websocket::server::DEFAULT_BIND_HOST.to_string())]
+    pub bind: String,
+
     /// UDP port the telemetry plane is relayed on
     #[arg(long, default_value_t = xtables_protobuf::telemetry::DEFAULT_TELEMETRY_PORT)]
     pub telemetry_port: u16,
