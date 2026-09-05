@@ -1,12 +1,12 @@
 //! The XTABLES server.
 //!
-//! [`XTablesServer`](xtables_server::XTablesServer) holds the value map and
+//! [`XTablesServer`](server::XTablesServer) holds the value map and
 //! serves publishes, reads, the control plane (get/delete/tables/ping/stats/json/CAS),
 //! and log relay over a single WebSocket port (5810). A UDP telemetry plane (5809)
 //! is retained for callers that want latency over delivery guarantees.
 //!
 //! ```no_run
-//! use xtables_server::xtables_server::XTablesServer;
+//! use xtables_server::server::XTablesServer;
 //!
 //! let server = XTablesServer::new();
 //! server.start();
@@ -36,7 +36,9 @@ pub mod utils {
 pub mod value;
 
 /// The server itself.
-pub mod xtables_server;
+pub mod server;
+
+pub use server::XTablesServer;
 
 /// The WebSocket transport and the NT4 protocol spoken over it.
 pub mod websocket;

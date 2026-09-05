@@ -12,7 +12,7 @@ use boltffi::*;
 use std::collections::HashMap;
 use std::sync::{Arc, Mutex};
 
-use xtables_client::xtables_client::{XTablesClient as Inner, XTablesConfig};
+use xtables_client::client::{XTablesClient as Inner, XTablesConfig};
 use xtables_protobuf::protobuf::supported_values::Kind;
 use xtables_protobuf::protobuf::{BezierCurve, BezierCurves, BezierCurvesList, ControlPoint};
 

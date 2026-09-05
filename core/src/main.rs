@@ -1,11 +1,11 @@
 use clap::Parser;
 use log::info;
 use xtables_server::{
+    server::XTablesServer,
     utils::{
         args::{CONFIG, XTablesArgs},
         log::init_logger,
     },
-    xtables_server::XTablesServer,
 };
 
 fn main() {
