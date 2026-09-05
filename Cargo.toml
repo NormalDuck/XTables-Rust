@@ -1,2 +1,23 @@
 [workspace]
-members = ["core", "clients/rust", "proto"]
+resolver = "3"
+exclude = ["tools/uniffi-bindgen", "tools/bindgen-java"]
+members = [
+    "core",
+    "client",
+    "proto",
+    "bench",
+    "bindings",
+    "bindings/types",
+]
+
+[workspace.lints.rust]
+missing_debug_implementations = "deny"
+
+[workspace.lints.clippy]
+redundant_clone = "deny"
+needless_collect = "deny"
+large_enum_variant = "deny"
+
+[profile.release]
+lto = "fat"
+codegen-units = 1
