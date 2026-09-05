@@ -1,6 +1,6 @@
 //! A Rust client for [XTABLES](https://github.com/Kobeeeef/XTABLES).
 //!
-//! [`XTablesClient`](client::XTablesClient) speaks the same method names
+//! [`XTablesClient`] speaks the same method names
 //! as the original: every public `put`/`get` on its `Requests` class exists here,
 //! across scalars, the seven list types, poses, coordinates and bezier curves.
 //! `send_float` is an addition, as are the control-plane calls and
