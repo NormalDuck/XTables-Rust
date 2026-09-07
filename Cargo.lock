@@ -171,6 +171,8 @@ dependencies = [
  "hdrhistogram",
  "prost",
  "tungstenite",
+ "xtables_client",
+ "xtables_protobuf",
  "xtables_server",
 ]
 
