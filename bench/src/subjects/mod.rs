@@ -24,21 +24,24 @@ pub fn run_delivery(
     count: u64,
     samples: u64,
 ) -> std::io::Result<()> {
+    let label = format!("{case} {implementation}");
     match (case, implementation, role) {
-        ("publish", "xtables-rust", "subscriber") => nt4::subscribe(host, payload, samples),
+        ("publish", "xtables-rust", "subscriber") => nt4::subscribe(host, payload, samples, &label),
         ("publish", "xtables-rust", "publisher") => nt4::publish(host, payload, rate, count),
-        ("publish", "xtables-rust-client", "subscriber") => nt4::subscribe(host, payload, samples),
+        ("publish", "xtables-rust-client", "subscriber") => {
+            nt4::subscribe(host, payload, samples, &label)
+        }
         ("publish", "xtables-rust-client", "publisher") => {
             client::publish(host, payload, rate, count)
         }
         ("telemetry_publish", "xtables-rust", "subscriber") => {
-            telemetry::subscribe(host, payload, samples)
+            telemetry::subscribe(host, payload, samples, &label)
         }
         ("telemetry_publish", "xtables-rust", "publisher") => {
             telemetry::publish(host, payload, rate, count)
         }
         ("udp_floor", "reference", "subscriber") => {
-            udp::subscribe(&udp_addr(host), payload, samples)
+            udp::subscribe(&udp_addr(host), payload, samples, &label)
         }
         ("udp_floor", "reference", "publisher") => {
             udp::publish(&udp_addr(host), payload, rate, count)
