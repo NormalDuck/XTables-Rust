@@ -28,10 +28,12 @@ pub fn run_delivery(
     match (case, implementation, role) {
         ("publish", "xtables-rust", "subscriber") => nt4::subscribe(host, payload, samples, &label),
         ("publish", "xtables-rust", "publisher") => nt4::publish(host, payload, rate, count),
-        ("publish", "xtables-rust-client", "subscriber") => {
+        ("publish", "ntcore", "subscriber") => nt4::subscribe(host, payload, samples, &label),
+        ("publish", "ntcore", "publisher") => nt4::publish(host, payload, rate, count),
+        ("publish_client", "xtables-rust", "subscriber") => {
             nt4::subscribe(host, payload, samples, &label)
         }
-        ("publish", "xtables-rust-client", "publisher") => {
+        ("publish_client", "xtables-rust", "publisher") => {
             client::publish(host, payload, rate, count)
         }
         ("telemetry_publish", "xtables-rust", "subscriber") => {
