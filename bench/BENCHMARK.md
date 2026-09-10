@@ -38,24 +38,32 @@ disk, without repeating it.
 
 Currently cataloged:
 
-| Case | Implementations |
-|---|---|
-| `publish` | `xtables-rust`, `xtables-rust-client`, `ntcore`, `xtables` |
-| `telemetry_publish` | `xtables-rust` |
-| `udp_floor` | `reference` |
-| `get`, `compare_and_set`, `delete`, `tables`, `ping` | `xtables-rust-client` |
+| Case | Group | Implementations |
+|---|---|---|
+| `publish` | servers | `xtables-rust`, `ntcore` |
+| `publish_client` | clients (rendered as `publish`) | `xtables-rust`, `ntcore`, `xtables` |
+| `telemetry_publish` | best-effort | `xtables-rust` |
+| `udp_floor` | best-effort | `reference` |
+| `get`, `compare_and_set`, `delete`, `tables`, `ping` | round-trip | `xtables-rust` |
 
-`publish` is the comparison that decides anything: every implementation on it
-publishes through its project's own library, which is what a robot's code
-actually calls. For `ntcore` and `xtables` there was never another option,
-since their protocols are only reachable through their stacks; the `xtables`
-implementation is the Java `XTablesClient` and the `ntcore` one is pyntcore.
-`xtables-rust` publishes the same operation through this repo's own client.
+`publish_client` is the comparison that decides anything: every implementation
+on it publishes through its project's own library, which is what a robot's
+code actually calls. For `ntcore` and `xtables` there was never another
+option, since their protocols are only reachable through their stacks; the
+`xtables` implementation is the Java `XTablesClient` and the `ntcore` one is
+pyntcore. `xtables-rust` publishes the same operation through this repo's own
+client. It renders as `publish` in the report; the case is named
+`publish_client` only so it can sit in the catalog next to `publish`.
+
+`publish` drives the same raw NT4 publisher and subscriber from this repo at
+each server in turn, with no client library in the way, so it isolates what a
+server costs on its own. `xtables` has no server reachable this way — its
+protocol has no client but its own — so it is absent from this table.
 
 `telemetry_publish` and `udp_floor` are best effort: nothing is retransmitted
 or ordered, and a lost datagram stays lost, which is what buys the latency.
-Reading them against `publish` compares a delivery guarantee with the absence
-of one.
+Reading them against `publish_client` compares a delivery guarantee with the
+absence of one.
 
 `get`, `compare_and_set`, `delete`, `tables` and `ping` are round-trip
 operations against the Rust client, with no equivalent implementation from the
