@@ -13,6 +13,7 @@ prost = "0.14.4"
 hdrhistogram = { version = "7.6", default-features = false }
 clap = { version = "4.6", features = ["derive"] }
 tungstenite = "0.30"
+serde_json = "1"
 xtables_client = { path = "../client" }
 xtables_protobuf = { path = "../proto" }
 xtables_server = { path = "../core" }

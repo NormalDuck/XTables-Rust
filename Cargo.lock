@@ -170,6 +170,7 @@ dependencies = [
  "clap",
  "hdrhistogram",
  "prost",
+ "serde_json",
  "tungstenite",
  "xtables_client",
  "xtables_protobuf",
