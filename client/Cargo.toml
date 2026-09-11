@@ -2,6 +2,7 @@
 name = "xtables_client"
 version = "0.1.0"
 edition = "2024"
+rust-version.workspace = true
 description = "A Rust client for interacting with the xtables server over ZeroMQ."
 license = "MIT"
 
@@ -11,7 +12,7 @@ workspace = true
 [dependencies]
 thiserror = "2.0"
 xtables_protobuf = { path = "../proto", version = "0.1.0" }
-xtables_server = { path = "../core" }
+xtables_server = { path = "../core", version = "0.1.0" }
 prost = "0.14.4"
 slotmap = "1.1"
 tungstenite = "0.30"

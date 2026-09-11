@@ -6,11 +6,10 @@ import java.util.Map;
 public final class Main {
     private static String usage() {
         return """
-            usage: bench <publisher|subscriber> --subject <ntcore|xtables-java> [options]
+            usage: bench <publisher|subscriber> [options]
 
-              --subject   ntcore | xtables-java
+              --probe     client (XTablesClient) | socket (its ZeroMQ sockets)
               --host      default 127.0.0.1
-              --port      default 48810
               --payload   wire bytes, minimum 16 (default 16)
               --rate      publisher send rate in Hz (default 1000)
               --count     publisher message count (default 100000)
@@ -36,28 +35,25 @@ public final class Main {
         }
         Map<String, String> options = parse(args);
         String host = options.getOrDefault("host", "127.0.0.1");
-        int port = Integer.parseInt(options.getOrDefault("port", "48810"));
         int payload = Integer.parseInt(options.getOrDefault("payload", "16"));
-        String subject = options.getOrDefault("subject", "ntcore");
+        String probeName = options.getOrDefault("probe", "client");
+        Probe probe = switch (probeName) {
+            case "client" -> new XtablesClientProbe();
+            case "socket" -> new XtablesSocketProbe();
+            default -> null;
+        };
+        if (probe == null) {
+            System.err.println("unknown probe: " + probeName);
+            System.exit(2);
+            return;
+        }
         long rate = Long.parseLong(options.getOrDefault("rate", "1000"));
         long count = Long.parseLong(options.getOrDefault("count", "100000"));
         int samples = Integer.parseInt(options.getOrDefault("samples", "100000"));
 
         switch (args[0]) {
-            case "publisher" -> {
-                switch (subject) {
-                    case "ntcore" -> NtcoreSubject.publish(host, port, payload, rate, count);
-                    case "xtables-java" -> XtablesSubject.publish(host, payload, rate, count);
-                    default -> { System.err.println("unknown subject: " + subject); System.exit(2); }
-                }
-            }
-            case "subscriber" -> {
-                switch (subject) {
-                    case "ntcore" -> NtcoreSubject.subscribe(port, payload, samples);
-                    case "xtables-java" -> XtablesSubject.subscribe(host, payload, samples);
-                    default -> { System.err.println("unknown subject: " + subject); System.exit(2); }
-                }
-            }
+            case "publisher" -> probe.publish(host, payload, rate, count);
+            case "subscriber" -> probe.subscribe(host, payload, samples);
             default -> {
                 System.err.println("unknown command: " + args[0]);
                 System.out.print(usage());

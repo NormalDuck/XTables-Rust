@@ -1,27 +1,19 @@
 use clap::Parser;
 use log::info;
 use xtables_server::{
-    server::XTablesServer,
-    utils::{
-        args::{CONFIG, XTablesArgs},
-        log::init_logger,
-    },
+    server::Server,
+    utils::{args::Args, log::init_logger},
 };
 
 fn main() {
-    CONFIG
-        .set(XTablesArgs::parse())
-        .expect("Failed to set configuration");
-
-    init_logger();
-
-    let config = CONFIG.get().expect("configuration was just set");
+    let config = Args::parse();
+    init_logger(config.log);
     eprintln!(
         "xtables: WebSocket {}:{}, telemetry UDP {}",
         config.bind, config.rep_port, config.telemetry_port
     );
 
-    let xtables_server = match XTablesServer::try_with_bind(
+    let xtables_server = match Server::try_with_bind(
         &config.bind,
         config.pub_port,
         config.pull_port,
