@@ -1,0 +1,5 @@
+[bindings.java]
+package_name = "org.xtables.ffi"
+
+[bindings.java.external_packages]
+xtables_types = "org.xtables"
